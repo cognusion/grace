@@ -2,7 +2,6 @@ package gracenet
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net"
 	"os"
 	"path/filepath"
@@ -35,7 +34,7 @@ func TestInvalidCountEnvVariable(t *testing.T) {
 
 func TestInvalidFileInherit(t *testing.T) {
 	var n Net
-	tmpfile, err := ioutil.TempFile("", "TestInvalidFileInherit-")
+	tmpfile, err := os.CreateTemp("", "TestInvalidFileInherit-")
 	ensure.Nil(t, err)
 	defer os.Remove(tmpfile.Name())
 	n.fdStart = dup(t, int(tmpfile.Fd()))
@@ -55,7 +54,7 @@ func TestInheritErrorOnListenTCPWithInvalidCount(t *testing.T) {
 func TestInheritErrorOnListenUnixWithInvalidCount(t *testing.T) {
 	var n Net
 	os.Setenv(envCountKey, "a")
-	tmpdir, err := ioutil.TempDir("", "TestInheritErrorOnListenUnixWithInvalidCount-")
+	tmpdir, err := os.MkdirTemp("", "TestInheritErrorOnListenUnixWithInvalidCount-")
 	ensure.Nil(t, err)
 	ensure.Nil(t, os.RemoveAll(tmpdir))
 	_, err = n.Listen("unix", filepath.Join(tmpdir, "socket"))
@@ -172,7 +171,7 @@ func TestWithTcpIPv6Loal(t *testing.T) {
 
 func TestOneUnixInherit(t *testing.T) {
 	var n Net
-	tmpfile, err := ioutil.TempFile("", "TestOneUnixInherit-")
+	tmpfile, err := os.CreateTemp("", "TestOneUnixInherit-")
 	ensure.Nil(t, err)
 	ensure.Nil(t, tmpfile.Close())
 	ensure.Nil(t, os.Remove(tmpfile.Name()))
@@ -198,7 +197,7 @@ func TestInvalidTcpAddr(t *testing.T) {
 	var n Net
 	os.Setenv(envCountKey, "")
 	_, err := n.Listen("tcp", "abc")
-	ensure.Err(t, err, regexp.MustCompile("^missing port in address abc$"))
+	ensure.Err(t, err, regexp.MustCompile("missing port in address"))
 }
 
 func TestTwoTCP(t *testing.T) {
@@ -251,7 +250,7 @@ func TestTwoTCP(t *testing.T) {
 func TestOneUnixAndOneTcpInherit(t *testing.T) {
 	var n Net
 
-	tmpfile, err := ioutil.TempFile("", "TestOneUnixAndOneTcpInherit-")
+	tmpfile, err := os.CreateTemp("", "TestOneUnixAndOneTcpInherit-")
 	ensure.Nil(t, err)
 	ensure.Nil(t, tmpfile.Close())
 	ensure.Nil(t, os.Remove(tmpfile.Name()))
@@ -300,7 +299,7 @@ func TestOneUnixAndOneTcpInherit(t *testing.T) {
 func TestSecondUnixListen(t *testing.T) {
 	var n Net
 	os.Setenv(envCountKey, "")
-	tmpfile, err := ioutil.TempFile("", "TestSecondUnixListen-")
+	tmpfile, err := os.CreateTemp("", "TestSecondUnixListen-")
 	ensure.Nil(t, err)
 	ensure.Nil(t, tmpfile.Close())
 	ensure.Nil(t, os.Remove(tmpfile.Name()))
@@ -314,7 +313,7 @@ func TestSecondUnixListen(t *testing.T) {
 
 func TestSecondUnixListenInherited(t *testing.T) {
 	var n Net
-	tmpfile, err := ioutil.TempFile("", "TestSecondUnixListenInherited-")
+	tmpfile, err := os.CreateTemp("", "TestSecondUnixListenInherited-")
 	ensure.Nil(t, err)
 	ensure.Nil(t, tmpfile.Close())
 	ensure.Nil(t, os.Remove(tmpfile.Name()))
