@@ -208,6 +208,7 @@ func PreStartProcess(hook func() error) option {
 	}
 }
 
+// ListenerLimit configures the number of concurrent listening goros.
 func ListenerLimit(limit int) option {
 	return func(a *app) {
 		a.listenerLimit = limit
