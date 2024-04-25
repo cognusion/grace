@@ -9,7 +9,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/facebookgo/grace/gracehttp"
+	"github.com/cognusion/grace/gracehttp"
 )
 
 var (

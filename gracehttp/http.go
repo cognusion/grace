@@ -14,7 +14,7 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/facebookgo/grace/gracenet"
+	"github.com/cognusion/grace/gracenet"
 	"github.com/facebookgo/httpdown"
 	"golang.org/x/net/netutil"
 )
