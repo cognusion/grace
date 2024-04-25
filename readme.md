@@ -1,4 +1,4 @@
-grace [![Build Status](https://secure.travis-ci.org/cognusion/grace.png)](https://travis-ci.org/cognusion/grace)
+grace
 =====
 
 Package grace provides a library that makes it easy to build socket
@@ -12,6 +12,9 @@ as systemd providing [socket
 activation](http://0pointer.de/blog/projects/socket-activation.html)
 compatibility to also provide lazy activation of the server.
 
+This was originally from facebook, and they have archived it. I use it in a
+number of packages personally and professionally, extending it circa 2018,
+and keeping it fresh circa 2024.
 
 Usage
 -----
