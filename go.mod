@@ -1,12 +1,14 @@
 module github.com/cognusion/grace
 
-go 1.22.2
+go 1.23.0
+
+toolchain go1.24.2
 
 require (
 	github.com/facebookgo/ensure v0.0.0-20200202191622-63f1cf65ac4c
 	github.com/facebookgo/freeport v0.0.0-20150612182905-d4adf43b75b9
 	github.com/facebookgo/httpdown v0.0.0-20180706035922-5979d39b15c2
-	golang.org/x/net v0.24.0
+	golang.org/x/net v0.39.0
 )
 
 require (
