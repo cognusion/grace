@@ -6,7 +6,7 @@ require (
 	github.com/facebookgo/ensure v0.0.0-20200202191622-63f1cf65ac4c
 	github.com/facebookgo/freeport v0.0.0-20150612182905-d4adf43b75b9
 	github.com/facebookgo/httpdown v0.0.0-20180706035922-5979d39b15c2
-	golang.org/x/net v0.60.0
+	golang.org/x/net v0.62.0
 )
 
 require (
